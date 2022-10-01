@@ -1,0 +1,149 @@
+{
+	"info": {
+		"_postman_id": "d84aa19d-359d-46ba-8642-7d13a03d07d9",
+		"name": "Temp",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "4055636"
+	},
+	"item": [
+		{
+			"name": "Get Info from your configured Identity Server",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:56001/.well-known/openid-configuration",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "56001",
+					"path": [
+						".well-known",
+						"openid-configuration"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Token From Identity Server",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "urlencoded",
+					"urlencoded": [
+						{
+							"key": "grant_type",
+							"value": "password",
+							"type": "text"
+						},
+						{
+							"key": "client_id",
+							"value": "ropc_client",
+							"type": "text"
+						},
+						{
+							"key": "client_secret",
+							"value": "secret_1",
+							"type": "text"
+						},
+						{
+							"key": "scope",
+							"value": "openid",
+							"type": "text"
+						},
+						{
+							"key": "username",
+							"value": "admin.admin@google.com",
+							"type": "text"
+						},
+						{
+							"key": "password",
+							"value": "admin_1",
+							"type": "text"
+						}
+					]
+				},
+				"url": {
+					"raw": "http://localhost:56001/connect/token",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "56001",
+					"path": [
+						"connect",
+						"token"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Run Authorize controller with bearer token in header",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjYwMkU3MEFFNDNGNEMzREY2REI2NzlFRjU4QjU3RTM4IiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE2NjQ2MTQzOTAsImV4cCI6MTY2NDYzMjM5MCwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1NjAwMSIsImNsaWVudF9pZCI6InJvcGNfY2xpZW50Iiwic3ViIjoidXNlci51c2VyQGdvb2dsZS5jb20iLCJhdXRoX3RpbWUiOjE2NjQ2MTQzOTAsImlkcCI6ImxvY2FsIiwianRpIjoiRDNBQTAzRDQzNjg3QkM3NEY5RjdBQzNEOUE5RjY5OEMiLCJpYXQiOjE2NjQ2MTQzOTAsInNjb3BlIjpbIm9wZW5pZCJdLCJhbXIiOlsicHdkIl19.QX_to9XU_CztxqLxnGH574zw4q7BZC8eP52bYTOIYE5LR8mZBZ0ATQNcW0jPLsJgksxRZ1hw6XuLVd6VvT3AsYZnF83K4ARMRpQ77qFl0jiXSoY88v7k14BEgvuU1T77kCZkCVrTNc-6O3RjvLJIMFQS3V5VtZE6K1AvbW31ei8meeP02R2Fvkm3-dSy99h8aBnbHm2TCSZ3BDuLvbXpOOrKrykdQjPF3YW1Y5pyNzDcYy88yrzMYzCDxAkIOnwnuOG8DGCRt32_3hsDsh-OuXWXPEnm_vnEzMqoH1eBswrswDkDOV8gGL7aSMPk-KyNrzlFeauG-s4qKsU48kvJeQ",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "Bearer eyJhbGciOiJSUzI1NiIsImtpZCI6IjYwMkU3MEFFNDNGNEMzREY2REI2NzlFRjU4QjU3RTM4IiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE2NjQ1Njc4OTksImV4cCI6MTY2NDU4NTg5OSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1NjAwMSIsImNsaWVudF9pZCI6InJvcGNfY2xpZW50Iiwic3ViIjoiYWRtaW4uYWRtaW5AZ29vZ2xlLmNvbSIsImF1dGhfdGltZSI6MTY2NDU2Nzg5OSwiaWRwIjoibG9jYWwiLCJqdGkiOiJEREU0RjUyOUJGQjk5NzNCREUzNUQzOTdDOUM0OUVGMCIsImlhdCI6MTY2NDU2Nzg5OSwic2NvcGUiOlsiZW1haWwiLCJvcGVuaWQiLCJwcm9maWxlIl0sImFtciI6WyJwd2QiXX0.DPSE4DE5bOZVnoRX48GNmBgBoxEMYZEU2UTVdDpyGy3cNGUDKkY6R-ZrqIupYk31ERSgDTfhhoi49fqRfLMN75TeLo46GFze4zIdxQbfuAldfdQZPTqH0YIplIxWhc9A26xHwpfLPOIh8i19y4N98cyD9z7ZiyBHdvh0ayvYQlWWOoggRWoMDWMqEscgeJXIKLait2osHggvTNsP3QAiNpR8s3E1KZGj4W2b3ZtQ49uihaHvVm2SS2OAIGQo3QVFJvL4wORrXs-Mtp7QEE5dO7RaStXKz8-z4Rf1J5ao4W21Zr5mNIpMsbG1XY8Wna3gs2U28Zy7stPI1rcuN6tAhg",
+						"type": "text"
+					}
+				],
+				"url": {
+					"raw": "http://localhost:56001/token-auth-weather",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "56001",
+					"path": [
+						"token-auth-weather"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Hello World string from separate microservice",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJSUzI1NiIsImtpZCI6IjYwMkU3MEFFNDNGNEMzREY2REI2NzlFRjU4QjU3RTM4IiwidHlwIjoiYXQrand0In0.eyJuYmYiOjE2NjQ2MDY4MzUsImV4cCI6MTY2NDYyNDgzNSwiaXNzIjoiaHR0cDovL2xvY2FsaG9zdDo1NjAwMSIsImNsaWVudF9pZCI6InJvcGNfY2xpZW50Iiwic3ViIjoiYWRtaW4uYWRtaW5AZ29vZ2xlLmNvbSIsImF1dGhfdGltZSI6MTY2NDYwNjgzNSwiaWRwIjoibG9jYWwiLCJqdGkiOiIwRjMzNzBCMDlCNDFGMjUxN0RDMDZDQzBCOEVFNzJDMiIsImlhdCI6MTY2NDYwNjgzNSwic2NvcGUiOlsib3BlbmlkIl0sImFtciI6WyJwd2QiXX0.TbT58_-9lcHoWI_MHtmhLy2COInqUKnG-fwoO-dx7a2ZbE7QniLplFMfJQ6heD4sfRNJfj71jZj1uTHZ9uxaGvl51vwcYF38wW550OPQRxnqzm-y03BWBzZD9G6wzIsXjAiHicE5v-fobOYKodHRDyoDmCgCK19dXPC8cy_AFKAEttI6mWfVi5Ls-cd-NCtLidvDAIsfnBvSwTzPfhUIOCj0lemXrrGeOl0VwgifbO8c1uNCpdjhOxTHKhjj3jygqgJund_zH9N9_ZW9sXdN77ct4sdZuz10tbXQT8lqZ99Y06qvMLkH-poVcP90dEhbXW6zgljudvIvHXOWtN0fsA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:59001/token-auth-hello-world",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "59001",
+					"path": [
+						"token-auth-hello-world"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
